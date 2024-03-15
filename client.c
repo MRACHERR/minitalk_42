@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/13 12:44:33 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:52:34 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int send_message(pid_t pid, char *msg)
 
     i = 0;
     if (pid == 0)
-        handle_errors("invalid id");
+        handle_errors("invalid pid");
     if(kill(pid, 0) == -1)
         handle_errors("invalid id");
     while (msg[i])
@@ -69,7 +69,7 @@ int send_message(pid_t pid, char *msg)
         send(pid,msg[i]);
         i++;
     }
-    send(pid,msg[i]);
+    //send(pid,msg[i]);
     return (0); 
 }
 
