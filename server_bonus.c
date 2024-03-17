@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:03 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/17 15:22:57 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/17 15:36:32 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	receiver(int bit, pid_t si_pid)
 	if (g_i < 0)
 	{
 		ft_printf("%c", c);
+        if (c == 0) /*gdggdgdg*/
+            kill(si_pid, SIGUSR1); /*gdggdgdg*/
 	}
 	old_si_pid = si_pid;
 }

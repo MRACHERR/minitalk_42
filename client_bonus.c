@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/17 15:27:46 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/17 15:39:53 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int send(pid_t pid, char c)
             kill(pid, SIGUSR1);
         else
             kill(pid, SIGUSR2);
-        usleep(900);
+        usleep(200);
         i--;
     }
     return(0);
@@ -73,12 +73,25 @@ int send_message(pid_t pid, char *msg)
     return (0); 
 }
 
+void sig_handler()
+{
+    ft_printf("<---------------message received------------------->");
+}
+
 int main(int argc, char **argv)
 {
+    struct sigaction	act;
+
+	act.sa_flags = 0;
+	act.sa_handler = &sig_handler;
+	sigaction(SIGUSR1, &act, 0);
+
     pid_t pid;
     
     check_argument(argc,argv);
+    // if (1)
     pid = ft_atoi(argv[1]);
+        //handle_errors("INVALID PID");
     send_message(pid, argv[2]);
     return (0);
 }
