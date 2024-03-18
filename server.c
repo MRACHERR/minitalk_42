@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:03 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/17 15:22:57 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/18 06:54:12 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	receive_signal(void)
 
 int	main(void)
 {
+	system ("clear");
 	ft_printf("Server PID : %i\n", getpid());
 	receive_signal();
 	while (1)
