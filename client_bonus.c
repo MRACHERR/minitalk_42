@@ -6,11 +6,11 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 15:12:47 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:29:04 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	handle_errors(char *error_msg)
 {

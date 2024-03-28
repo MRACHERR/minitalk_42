@@ -6,7 +6,7 @@
 #    By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 11:54:33 by acherraq          #+#    #+#              #
-#    Updated: 2024/03/17 14:58:49 by acherraq         ###   ########.fr        #
+#    Updated: 2024/03/28 15:29:15 by acherraq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,10 +54,10 @@ $(CLIENT): $(CLIENT_OBJ) minitalk.h $(LIBFT) $(PRINTF)
 $(SERVER): $(SERVER_OBJ) minitalk.h $(LIBFT) $(PRINTF)
 	$(CC) $(CFLAGS) $(SERVER_OBJ) $(PRINTF) $(LIBFT) -o server
 
-$(CLIENT_BONUS): $(CLIENT_OBJ_BONUS) minitalk.h $(LIBFT) $(PRINTF)
+$(CLIENT_BONUS): $(CLIENT_OBJ_BONUS) minitalk_bonus.h $(LIBFT) $(PRINTF)
 				$(CC) $(CFLAGS) $(CLIENT_OBJ_BONUS) $(LIBFT) $(PRINTF) -o client_bonus
 	
-$(SERVER_BONUS): $(SERVER_OBJ_BONUS) minitalk.h $(LIBFT) $(PRINTF)
+$(SERVER_BONUS): $(SERVER_OBJ_BONUS) minitalk_bonus.h $(LIBFT) $(PRINTF)
 				$(CC) $(CFLAGS) $(SERVER_OBJ_BONUS) $(PRINTF) $(LIBFT) -o server_bonus
 			
 # $(CLIENT): $(CLIENT).c minitalk.h

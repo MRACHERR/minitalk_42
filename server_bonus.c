@@ -6,11 +6,11 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:03 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 14:17:22 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:28:57 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int		g_i = -1;
 
