@@ -6,13 +6,13 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:03 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 14:04:28 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:17:22 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int g_i = -1;
+int		g_i = -1;
 
 void	handle_errors(char *error_msg)
 {
@@ -30,11 +30,6 @@ void	receiver(int bit, pid_t si_pid)
 
 	if (g_i == -1)
 		old_si_pid = -1;
-	if (bit == 2)
-	{
-		g_i = -1;
-		c = 0;
-	}
 	if (g_i < 0 || old_si_pid != si_pid)
 	{
 		g_i = 7;
@@ -47,8 +42,8 @@ void	receiver(int bit, pid_t si_pid)
 	if (g_i < 0)
 	{
 		ft_printf("%c", c);
-        if (c == 0) /*gdggdgdg*/
-            kill(si_pid, SIGUSR1); /*gdggdgdg*/
+		if (c == 0)
+			kill(si_pid, SIGUSR1);
 	}
 	old_si_pid = si_pid;
 }
@@ -82,7 +77,7 @@ int	main(void)
 ██║╚██╔╝██║██║██║╚██╗██║██║   ██║   ██╔══██║██║     ██╔═██╗ \n \
 ██║ ╚═╝ ██║██║██║ ╚████║██║   ██║   ██║  ██║███████╗██║  ██╗\n \
 ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝\n \
- \n Server PID: %i\n", getpid());	
+ \n Server PID: %i\n", getpid());
 	receive_signal();
 	while (1)
 		pause();

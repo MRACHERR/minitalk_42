@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/17 15:27:46 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:19:33 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,69 +17,68 @@ void	handle_errors(char *error_msg)
 	write(STDERR_FILENO, "Error: ", 7);
 	write(STDERR_FILENO, error_msg, ft_strlen(error_msg));
 	write(STDERR_FILENO, "\n", 1);
-	//exit(EXIT_FAILURE);
-    exit(1);
+	exit(1);
 }
-void check_argument(int argc, char **argv)
+
+void	check_argument(int argc, char **argv)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if(argc != 3)
-        handle_errors("invalid number of argument");
-    while (argv[1][i])
-    {
-        if (!ft_isdigit(argv[1][i]))
-            handle_errors("INVALID PID");
-        i++;
-    } 
+	i = 0;
+	if (argc != 3)
+		handle_errors("invalid number of argument");
+	while (argv[1][i])
+	{
+		if (!ft_isdigit(argv[1][i]))
+			handle_errors("INVALID PID");
+		i++;
+	}
 }
-int send(pid_t pid, char c)
+
+int	send(pid_t pid, char c)
 {
-    int i;
-    int shift;
-    
-    i = 7;
-    shift = 0;
-    while (i >= 0)
-    {
-        shift = 1 << i;
-        if (shift & c)
-            kill(pid, SIGUSR1);
-        else
-            kill(pid, SIGUSR2);
-        usleep(900);
-        i--;
-    }
-    return(0);
+	int	i;
+	int	shift;
+
+	i = 7;
+	shift = 0;
+	while (i >= 0)
+	{
+		shift = 1 << i;
+		if (shift & c)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(900);
+		i--;
+	}
+	return (0);
 }
 
-
-int send_message(pid_t pid, char *msg)
+int	send_message(pid_t pid, char *msg)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (pid == 0)
-        handle_errors("invalid pid");
-    if(kill(pid, 0) == -1)
-        handle_errors("invalid id");
-    while (msg[i])
-    {
-        send(pid,msg[i]);
-        i++;
-    }
-    send(pid,msg[i]);
-    return (0); 
+	i = 0;
+	if (pid == 0)
+		handle_errors("invalid pid");
+	if (kill(pid, 0) == -1)
+		handle_errors("invalid id");
+	while (msg[i])
+	{
+		send(pid, msg[i]);
+		i++;
+	}
+	send(pid, msg[i]);
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    pid_t pid;
-    
-    check_argument(argc,argv);
-    pid = ft_atoi(argv[1]);
-    send_message(pid, argv[2]);
-    return (0);
-}
+	pid_t	pid;
 
+	check_argument(argc, argv);
+	pid = ft_atoi(argv[1]);
+	send_message(pid, argv[2]);
+	return (0);
+}
