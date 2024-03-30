@@ -6,7 +6,7 @@
 #    By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 11:54:33 by acherraq          #+#    #+#              #
-#    Updated: 2024/03/30 14:39:02 by acherraq         ###   ########.fr        #
+#    Updated: 2024/03/30 15:48:06 by acherraq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,20 @@ OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+
 all: server client
 
 bonus: server_bonus client_bonus
 
-server: server.o minitalk.h | libft printf
+# server.o: minitalk.h | libft printf
+# client.o: minitalk.h | libft printf
+# server_bonus.o: minitalk.h | libft printf
+# client_bonus.o: minitalk.h | libft printf
+
+server: server.o minitalk.h printf/libftprintf.a
 	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-client: client.o minitalk.h | libft printf
+client: client.o minitalk.h  
 	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
 server_bonus: server_bonus.o minitalk.h | libft printf
@@ -35,7 +41,7 @@ server_bonus: server_bonus.o minitalk.h | libft printf
 client_bonus: client_bonus.o minitalk.h | libft printf
 	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 	
-%.o: %.c
+%.o: %.c | libft printf
 	$(CC) -c $(CFLAGS) $<
 
 libft:
@@ -43,6 +49,7 @@ libft:
 
 printf:
 	make -C printf
+
 
 clean:
 	rm -f $(OBJECTS)
