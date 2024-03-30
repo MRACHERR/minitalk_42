@@ -6,73 +6,54 @@
 #    By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 11:54:33 by acherraq          #+#    #+#              #
-#    Updated: 2024/03/28 15:29:15 by acherraq         ###   ########.fr        #
+#    Updated: 2024/03/30 14:39:02 by acherraq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#NAME = libminitalk.a
-CFLAGS = -Wall -Werror -Wextra
-PRINTF = ./printf/libftprintf.a
-LIBFT = ./libft/libft.a
-CC = cc
-RM = rm -f
-# AR = ar -rcs
+SOURCES = server.c client.c
+OBJECTS = $(SOURCES:.c=.o)
 
-SERVER = server
-CLIENT = client
+SOURCES_BONUS = server_bonus.c client_bonus.c
+OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 
-SERVER_BONUS = server_bonus
-CLIENT_BONUS = client_bonus
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-SERVER_SRC = server.c
-CLIENT_SRC = client.c
+all: server client
 
-SERVER_SRC_BONUS = server_bonus.c
-CLIENT_SRC_BONUS = client_bonus.c
+bonus: server_bonus client_bonus
 
-SERVER_OBJ = $(SERVER_SRC:.c=.o)
-CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+server: server.o minitalk.h | libft printf
+	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-SERVER_OBJ_BONUS = $(SERVER_SRC_BONUS:.c=.o)
-CLIENT_OBJ_BONUS = $(CLIENT_SRC_BONUS:.c=.o)
-# $(NAME) : $(OBJS)
-# 		$(AR) $(NAME) $(OBJS)
-# %.o: %.c minitalk.h
-# 	$(CC) $(CFLAGS) -c $< -o $@
-all:  $(CLIENT) $(SERVER)
-bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
+client: client.o minitalk.h | libft printf
+	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-$(LIBFT):
-	$(MAKE) -C ./libft
+server_bonus: server_bonus.o minitalk.h | libft printf
+	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-$(PRINTF):
-	$(MAKE) -C ./printf
-
-$(CLIENT): $(CLIENT_OBJ) minitalk.h $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(CLIENT_OBJ) $(LIBFT) $(PRINTF) -o client
+client_bonus: client_bonus.o minitalk.h | libft printf
+	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 	
-$(SERVER): $(SERVER_OBJ) minitalk.h $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(SERVER_OBJ) $(PRINTF) $(LIBFT) -o server
+%.o: %.c
+	$(CC) -c $(CFLAGS) $<
 
-$(CLIENT_BONUS): $(CLIENT_OBJ_BONUS) minitalk_bonus.h $(LIBFT) $(PRINTF)
-				$(CC) $(CFLAGS) $(CLIENT_OBJ_BONUS) $(LIBFT) $(PRINTF) -o client_bonus
-	
-$(SERVER_BONUS): $(SERVER_OBJ_BONUS) minitalk_bonus.h $(LIBFT) $(PRINTF)
-				$(CC) $(CFLAGS) $(SERVER_OBJ_BONUS) $(PRINTF) $(LIBFT) -o server_bonus
-			
-# $(CLIENT): $(CLIENT).c minitalk.h
-# 		$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT).c
-# $(NAME) : $(SERVER) $(CLIENT)	
+libft:
+	make -C libft
+
+printf:
+	make -C printf
+
 clean:
-	$(RM) $(SERVER_OBJ) $(CLIENT_OBJ) $(SERVER_OBJ_BONUS) $(CLIENT_OBJ_BONUS)
-	$(MAKE) clean -C ./libft
-	$(MAKE) clean -C ./printf
+	rm -f $(OBJECTS)
+	rm -f $(OBJECTS_BONUS)
+	make -C libft clean
+	make -C printf clean
+	
 fclean: clean
-	$(RM) $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS) 
-	$(MAKE) fclean -C ./libft
-	$(MAKE) fclean -C ./printf
+	rm -f server client libft/libft.a printf/libftprintf.a
+	rm -f server_bonus client_bonus
 
+re: fclean all
 
-
-re:	fclean all bonus
-.PHONY: all clean fclean re bonus
+.PHONY: all bonus libft printf clean fclean re

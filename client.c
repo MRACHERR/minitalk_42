@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 14:19:33 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:40:39 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	send(pid_t pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(900);
+		usleep(70);
+		usleep(40);
 		i--;
 	}
 	return (0);

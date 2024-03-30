@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:03 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 14:04:10 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:29:04 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ void	receiver(int bit, pid_t si_pid)
 
 	if (g_i == -1)
 		old_si_pid = -1;
-	if (bit == 2)
-	{
-		g_i = -1;
-		c = 0;
-	}
 	if (g_i < 0 || old_si_pid != si_pid)
 	{
 		g_i = 7;
@@ -68,12 +63,14 @@ void	receive_signal(void)
 	act.sa_sigaction = sig_handler;
 	if (sigaction(SIGUSR2, &act, NULL) == -1 || sigaction(SIGUSR1, &act,
 			NULL) == -1)
-		handle_errors("Failed to change SIGUSR2's behavior");
+		handle_errors("reception Failed behavior");
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	system ("clear");
+	(void)argv;
+	if (argc != 1)
+		handle_errors("invalid argument");
 	ft_printf(" \n \
 ███╗   ███╗██╗███╗   ██╗██╗████████╗ █████╗ ██╗     ██╗  ██╗\n \
 ████╗ ████║██║████╗  ██║██║╚══██╔══╝██╔══██╗██║     ██║ ██╔╝\n \

@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/03/28 15:29:04 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:40:26 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	send(pid_t pid, char c)
 			if (kill(pid, SIGUSR2) == -1)
 				handle_errors("Failed to send signal");
 		}
-		usleep(900);
+		usleep(70);
+		usleep(40);
 		i--;
 	}
 	return (0);
