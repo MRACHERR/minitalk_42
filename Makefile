@@ -28,13 +28,13 @@ bonus: server_bonus client_bonus
 server: server.o minitalk.h printf/libftprintf.a libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-client: client.o printf/libftprintf.a libft/libft.a
+client: client.o minitalk.h printf/libftprintf.a libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-server_bonus: server_bonus.o minitalk.h printf/libftprintf.a libft/libft.a
+server_bonus: server_bonus.o minitalk_bonus.h printf/libftprintf.a libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-client_bonus: client_bonus.o minitalk.h printf/libftprintf.a libft/libft.a
+client_bonus: client_bonus.o minitalk_bonus.h printf/libftprintf.a libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 	
 %.o: %.c | libft printf
