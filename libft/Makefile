@@ -1,3 +1,4 @@
+NAME = libft.a
 CC = cc
 
 FLAGS = -Wall -Wextra -Werror
@@ -15,15 +16,15 @@ SRC = $(FILES:=.c)
 
 OBJ = $(FILES:=.o)
 
-NAME = libft.a
 
-all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 %.o : %.c libft.h
 	$(CC) $(FLAGS) -c $< -o $@
+
+all : $(NAME)
 
 clean:
 	$(RM) $(OBJ) 
