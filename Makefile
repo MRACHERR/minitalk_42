@@ -16,7 +16,7 @@ OBJECTS = $(SOURCES:.c=.o)
 SOURCES_BONUS = server_bonus.c client_bonus.c
 OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 
