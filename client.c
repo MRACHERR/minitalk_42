@@ -6,7 +6,7 @@
 /*   By: acherraq <acherraq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:23:09 by acherraq          #+#    #+#             */
-/*   Updated: 2024/04/01 12:06:20 by acherraq         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:52:59 by acherraq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 
 	check_argument(argc, argv);
 	pid = ft_atoi(argv[1]);
-	if (pid > MAX_PID)
+	if ((unsigned long)pid > MAX_PID)
 		handle_errors("INVALID PID");
 	send_message(pid, argv[2]);
 	return (0);
